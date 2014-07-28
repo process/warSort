@@ -45,18 +45,26 @@ def playRound(p1deck,p2deck):
 # print p4 == [4]
 
 def warSort(p1deck,p2deck):
-    round = 0
-    while (p1deck != orderedDeck) or (p2deck != orderedDeck):
-	    if len(p1deck) == 0:
-		    for x in range(26,52):
-			    p1deck.append(p2deck[x])
-	    elif len(p2deck) == 0:
-		    for y in range(26,52):
-			    p2deck.append(p1deck[y])
-	    else:
-		    playRound(p1deck,p2deck)
-		    round += 1
-    return round		
+  round = 0
+  while (p1deck != orderedDeck) and (p2deck != orderedDeck):
+
+    print "DECK 1: ", p1deck
+    print "DECK 2: ", p2deck
+    print "LEN: ", len(p1deck) + len(p2deck)
+    print "ROUND: ", round
+    print
+    print
+
+    if len(p1deck) == 0:
+      p1deck.extend(p2deck[26:52])
+      p2deck = p2deck[:26]
+    elif len(p2deck) == 0:
+      p2deck.extend(p1deck[26:52])
+      p1deck = p1deck[:26]
+    else:
+      playRound(p1deck,p2deck)
+      round += 1
+  return round		
 
 #Test Cases warSort
 #p1 = deck
